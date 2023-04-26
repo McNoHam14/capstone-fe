@@ -1,37 +1,31 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import SignUp from "./components/SignUp";
-import LogIn from "./components/LogIn";
-import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
-import IWantTo from "./components/IWantTo";
+import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
+import IWantTo from "./pages/IWantTo";
+import { Route, Routes } from "react-router-dom";
+import Feed from "./pages/Feed";
+import Host from "./pages/Host";
+import Places from "./pages/Places";
+import Profile from "./pages/Profile";
+import Events from "./pages/Events";
+import CategoryEvents from "./pages/CategoryEvents";
 
 function App() {
   return (
     <>
-      <LogIn />
-      <hr></hr>
-      <SignUp />
-      <hr></hr>
-      <IWantTo />
-      <hr></hr>
-
-      <NavBar />
-      <SideBar />
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/host" element={<Host />} />
+        <Route path="/iwantto" element={<IWantTo />} />
+        <Route path="/places" element={<Places />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/events/:category" element={<CategoryEvents />} />
+      </Routes>
     </>
   );
-}
-
-{
-  /* <BrowserRouter>
-  <Routes>
-    <Route path="/" element={< />}>
-      <Route index element={< />} />
-      <Route path="blogs" element={</>} />
-      <Route path="contact" element={< />} />
-      <Route path="*" element={< />} />
-    </Route>
-  </Routes>
-</BrowserRouter>; */
 }
 
 export default App;

@@ -1,0 +1,19 @@
+.navbar {
+  background-color: rgb(55, 182, 255);
+  height: 80px;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 130px;
+  background-color: orange;
+  height: 100vh;
+}
+
+.sidebar button:hover {
+  background-color: red;
+  border-color: red;
+}
