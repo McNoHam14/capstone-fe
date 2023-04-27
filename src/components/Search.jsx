@@ -17,7 +17,7 @@ const Search = () => {
           </option>
 
           <option value="tennis">Tennis</option>
-          <option value="mercedes">Running</option>
+          <option value="running">Running</option>
         </select>
 
         <span>FAMILY</span>
