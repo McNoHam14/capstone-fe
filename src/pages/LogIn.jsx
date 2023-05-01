@@ -27,9 +27,9 @@ const LogIn = () => {
     <div>
       <Container>
         <Row className="mt-3">
-          <Col></Col>
+          <Col>CLOUD LOGO PH</Col>
           <Col>
-            <Card>
+            <Card className="p-4">
               <h2 className="d-flex align-items-center justify-content-center text-center">
                 Login
               </h2>
@@ -61,15 +61,17 @@ const LogIn = () => {
                     placeholder="type your password..."
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                  LOGON
-                </Button>
+                <div className="d-flex align-items-center justify-content-center text-center mb-4">
+                  <Button variant="primary" type="submit">
+                    LOGON
+                  </Button>
+                </div>
               </Form>
               <div>
                 <p className="d-flex align-items-center justify-content-center text-center">
                   or Sign Up using...
                 </p>
-                <div className="d-flex align-items-center justify-content-center text-center">
+                <div className="d-flex align-items-center justify-content-center text-center mb-4">
                   <span>FB</span>
                   <span>/EMAIL/</span>
                   <span>GOOGLE</span>
@@ -81,7 +83,7 @@ const LogIn = () => {
               </div>
             </Card>
           </Col>
-          <Col></Col>
+          <Col>CLOUD LOGO PH</Col>
         </Row>
       </Container>
     </div>
