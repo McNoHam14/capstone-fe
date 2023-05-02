@@ -9,8 +9,30 @@ import Places from "./pages/Places";
 import Profile from "./pages/Profile";
 import Events from "./pages/Events";
 import CategoryEvents from "./pages/CategoryEvents";
+import { useEffect } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const getProfile = async () => {
+    const res = await axios.get("http://localhost:4000/users/profile", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    // console.log(res.data);
+    dispatch({
+      type: "STORE_USER",
+      payload: res.data,
+    });
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   return (
     <>
       <Routes>

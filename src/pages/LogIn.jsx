@@ -5,10 +5,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { MDBBadge, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const logInHandler = async (e) => {
     e.preventDefault();
@@ -18,6 +20,10 @@ const LogIn = () => {
         password,
       });
       localStorage.setItem("token", res.data.token);
+      dispatch({
+        type: "STORE_USER",
+        payload: res.data.user,
+      });
     } catch (error) {
       alert(error.response.data);
     }

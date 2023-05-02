@@ -3,6 +3,11 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
+  if (action.type === "STORE_USER") {
+    const stateCopy = { ...state };
+    stateCopy.user = action.payload;
+    return stateCopy;
+  }
   return state;
 };
 

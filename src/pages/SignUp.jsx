@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import classes from "../styles/SignUp.module.css";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -9,6 +10,8 @@ const SignUp = () => {
   const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const signUpHandler = async (e) => {
     e.preventDefault();
@@ -20,8 +23,12 @@ const SignUp = () => {
         email,
         password,
       });
-      // localStorage.setItem("token", res.data.token);
-      console.log(res.data);
+      localStorage.setItem("token", res.data.token);
+      // console.log(res.data);
+      dispatch({
+        type: "STORE_USER",
+        payload: res.data.user,
+      });
     } catch (error) {
       alert(error.response.data);
     }
