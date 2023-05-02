@@ -7,6 +7,10 @@ const userReducer = (state = initialState, action) => {
     const stateCopy = { ...state };
     stateCopy.user = action.payload;
     return stateCopy;
+  } else if (action.type === "REMOVE_USER") {
+    const stateCopy = { ...state };
+    stateCopy.user = action.payload;
+    return stateCopy;
   }
   return state;
 };

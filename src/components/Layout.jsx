@@ -4,8 +4,20 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Button } from "react-bootstrap";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const Layout = (props) => {
+  const dispatch = useDispatch();
+
+  const signOutHandler = async () => {
+    localStorage.removeItem("token");
+    dispatch({
+      type: "REMOVE_USER",
+      payload: null,
+    });
+  };
+
   return (
     <div>
       <div className={classes.navbar}>
@@ -33,6 +45,10 @@ const Layout = (props) => {
           <Button variant="primary">FAMILY</Button>
           <Button variant="primary">CULTURE</Button>
           <Button variant="primary">FOOD/DRINK</Button>
+          <hr></hr>
+          <Button onClick={signOutHandler} variant="secondary">
+            LOG OUT
+          </Button>
         </div>
 
         <div>
