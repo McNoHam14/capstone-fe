@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import { MDBBadge, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import logo from "../assets/img/catch-A.jpg";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -30,11 +31,13 @@ const LogIn = () => {
   };
 
   return (
-    <div>
+    <div className={classes.login_background}>
       <Container>
-        <Row className="mt-3">
-          <Col>CLOUD LOGO PH</Col>
-          <Col>
+        <Row>
+          <Col md={3}>
+            <img className={classes.image_logo} src={logo} alt="catch-A Logo" />
+          </Col>
+          <Col md={6} className="mt-3">
             <Card className="p-4">
               <h2 className="d-flex align-items-center justify-content-center text-center">
                 Login
@@ -78,9 +81,14 @@ const LogIn = () => {
                   or Sign Up using...
                 </p>
                 <div className="d-flex align-items-center justify-content-center text-center mb-4">
-                  <span>FB</span>
-                  <span>/EMAIL/</span>
-                  <span>GOOGLE</span>
+                  <span>
+                    <i class="bi bi-envelope-at-fill"></i>
+                  </span>
+                  <span> / </span>
+                  <span>
+                    <i class="bi bi-google"></i>
+                  </span>
+
                   {/* <MDBBtn className="m-1" style={{ backgroundColor: "#dd4b39" }} href="#">
         <MDBIcon fab icon="google" />
       </MDBBtn>
@@ -89,7 +97,9 @@ const LogIn = () => {
               </div>
             </Card>
           </Col>
-          <Col>CLOUD LOGO PH</Col>
+          <Col md={3}>
+            <img className={classes.image_logo} src={logo} alt="catch-A Logo" />
+          </Col>
         </Row>
       </Container>
     </div>

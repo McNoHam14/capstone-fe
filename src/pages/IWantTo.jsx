@@ -2,10 +2,11 @@ import React from "react";
 import "../styles/IWantTo.module.css";
 import Button from "react-bootstrap/Button";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import classes from "../styles/IWantTo.module.css";
 
 const IWantTo = () => {
   return (
-    <>
+    <div className={classes.iwantto_background}>
       <div className="d-grid gap-2">
         <Button variant="primary" size="lg">
           I WANT TO...
@@ -44,7 +45,7 @@ const IWantTo = () => {
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 

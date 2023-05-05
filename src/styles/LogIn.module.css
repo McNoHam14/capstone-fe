@@ -1,3 +1,16 @@
 /* body {
   background-color: orange;
 } */
+
+.login_background {
+  background-color: orange;
+  min-height: 100vh;
+  width: 100vw;
+  margin-top: ;
+}
+
+.image_logo {
+  width: 160px;
+  height: 140px;
+  margin-top: 20px;
+}
