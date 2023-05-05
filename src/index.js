@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import "../src/styles/index.css";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import "leaflet/dist/leaflet.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

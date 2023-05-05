@@ -109,6 +109,12 @@ const SignUp = () => {
                   <button className={classes.sign_up_btn}>
                     PUT CLICK ICON HERE
                   </button>
+                  <p className="d-flex align-items-center justify-content-center text-center">
+                    or Sign Up using...
+                  </p>
+                  <span>
+                    <i class="bi bi-google"></i>
+                  </span>
                 </div>
               </form>
             </Card>

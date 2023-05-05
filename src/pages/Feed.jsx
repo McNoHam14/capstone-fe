@@ -6,8 +6,7 @@ import NoticeBoard from "../components/NoticeBoard";
 const Feed = () => {
   return (
     <Layout>
-      <Search />
-      <NoticeBoard />
+      <Search isNotice={true} />
     </Layout>
   );
 };

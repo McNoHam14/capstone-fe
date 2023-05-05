@@ -9,3 +9,12 @@
 body {
   background-color: #5ce1e6;
 }
+
+/* .full-height-map {
+  height: 100vh;
+} */
+
+.leaflet-container {
+  width: 500px;
+  height: 500px;
+}
