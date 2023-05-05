@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import classes from "../styles/SignUp.module.css";
 import { useDispatch } from "react-redux";
+import { BASE_URL } from "../constant";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,7 +17,7 @@ const SignUp = () => {
   const signUpHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/users/signup", {
+      const res = await axios.post(`${BASE_URL}/users/signup`, {
         firstName,
         lastName,
         birthDate,
