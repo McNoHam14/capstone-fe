@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { BE_URL, EVENTS } from "../constant";
 import NoticeBoard from "./NoticeBoard";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Places from "../pages/Places";
 
 const Search = ({ isNotice = false }) => {
   const [events, setEvents] = useState([]);
 
   const handleSubmit = (values) => {
     axios
-      .get(`${BE_URL}/events/search`, values)
+      .get(`${BE_URL}/events/search`, { params: values })
       .then((response) => {
         console.log(response.data);
 
@@ -21,16 +24,23 @@ const Search = ({ isNotice = false }) => {
 
   const [category, setCategoryValue] = useState("");
 
-  const [eventType, setSubCategory] = useState("");
+  const [eventType, setEventType] = useState("");
+
+  const [eventSubType, setEventSubType] = useState("");
+
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    let data = { category, eventType };
-    if (eventType) {
+    let data = { category, eventType, eventSubType };
+    if (eventType && eventSubType) {
+      delete data.category;
+      delete data.eventType;
+    } else if (eventType) {
       delete data.category;
     }
     console.log("Send=", data);
     handleSubmit(data);
-  }, [category, eventType]);
+  }, [category, eventType, eventSubType]);
 
   return (
     <div>
@@ -45,12 +55,17 @@ const Search = ({ isNotice = false }) => {
             onChange={(e) => {
               console.log(e.target.value);
               setCategoryValue(e.target.value);
+              setEventType("");
+              setEventSubType("");
             }}
             value={category}
           >
+            <option key={""} value={""}>
+              {"Select a category"}
+            </option>
             {EVENTS.map((values, index) => {
               return (
-                <option key={index} value={values.name}>
+                <option key={index} value={values.name.toUpperCase()}>
                   {values.name}
                 </option>
               );
@@ -81,14 +96,18 @@ const Search = ({ isNotice = false }) => {
             value={eventType}
             onChange={(e) => {
               console.log(e);
-              setSubCategory(e.target.value);
+              setEventType(e.target.value);
               console.log(eventType);
+              setEventSubType("");
             }}
           >
+            <option key={""} value={""}>
+              {"Select a Event Type"}
+            </option>
             {EVENTS.find((val) => val.name == category)?.event.map(
               (values, index) => {
                 return (
-                  <option value={values.type} key={index}>
+                  <option value={values.type.to} key={index}>
                     {values.type}
                   </option>
                 );
@@ -99,10 +118,15 @@ const Search = ({ isNotice = false }) => {
           <select
             id="host-category-dropdown"
             name="host-category-dropdown"
+            value={eventSubType}
             onChange={(e) => {
               console.log(e);
+              setEventSubType(e.target.value);
             }}
           >
+            <option key={""} value={""}>
+              {"Select a Event Sub Type"}
+            </option>
             {EVENTS.find((val) => val.name == category)
               ?.event.find((val) => val.type == eventType)
               ?.subEvent.map((values, index) => {
@@ -140,13 +164,36 @@ const Search = ({ isNotice = false }) => {
             min="2023-05-01T00:00"
             max="20-06-24T00:00"
           ></input>
-          Location (GOOGLE MAPS ICON) <select></select>
+          <div
+            onClick={() => {
+              console.log("");
+              setShow(true);
+            }}
+          >
+            {" "}
+            OPEN MAP FOR LOCATION{" "}
+          </div>
         </div>
       </form>
       <hr></hr>
+      <MapModal show={show} />
       {isNotice && <NoticeBoard events={events} />}
     </div>
   );
 };
+
+function MapModal({ show }) {
+  return (
+    <Modal show={show}>
+      <Modal.Dialog>
+        <Places />
+
+        <Modal.Footer>
+          <Button variant="secondary">Close</Button>
+        </Modal.Footer>
+      </Modal.Dialog>
+    </Modal>
+  );
+}
 
 export default Search;

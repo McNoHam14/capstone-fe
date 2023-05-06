@@ -3,19 +3,34 @@ export const BE_URL = "http://localhost:4000";
 
 export const EVENTS = [
   {
-    name: "SPORT",
+    name: "SPORTS",
     event: [
-      { type: "Football", subEvent: ["5a side", "11a side"] },
+      { type: "Football", subEvent: ["5a side", "11a side", "Kickabout"] },
       { type: "Cricket", subEvent: ["20/20", "50 overs"] },
       { type: "Tennis", subEvent: ["Singles", "Doubles"] },
     ],
   },
-
   {
     name: "FAMILY",
     event: [
-      { type: "Parent & Baby Class", subEvent: ["Newborn", "Baby", "Toddler"] },
-      { type: "Singalong", subEvent: ["English", "Welsh"] },
+      {
+        type: "Newborn",
+        subEvent: ["Parent & Baby Class", "Storytime"],
+      },
+      {
+        type: "Baby",
+        subEvent: ["Parent & Baby Class", "Singalong", "Softplay", "Storytime"],
+      },
+      {
+        type: "Toddler",
+        subEvent: [
+          "Parent & Baby Class",
+          "Singalong",
+          "Softplay",
+          "Storytime",
+          "Swimming",
+        ],
+      },
     ],
   },
 

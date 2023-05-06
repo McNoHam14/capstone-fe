@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, TileLayer, useMapEvent } from "react-leaflet";
 import "../styles/Places.css";
+import MarkerIcon from "../assets/img/map-marker-2.png";
+import L from "leaflet";
 
-const Places = () => {
+const myIcon = L.icon({
+  iconUrl: MarkerIcon,
+  iconSize: [38, 38],
+  iconAnchor: [19, 38],
+  popupAnchor: [0, -38],
+});
+
+const Places = ({ markerPosition, setMarkerPosition }) => {
+  const handleDragEnd = (e) => {
+    // console.log(e.target.getLatLng().lat);
+    // console.log(e.target.getLatLng().lng);
+
+    setMarkerPosition([e.target.getLatLng().lat, e.target.getLatLng().lng]);
+  };
+
+  console.log("markerPosition", markerPosition);
+  // set up event handlers
+  const eventHandlers = React.useMemo(
+    () => ({
+      dragend: handleDragEnd,
+    }),
+    []
+  );
+
   return (
-    <Layout>
+    <Layout isDisplay={false}>
       <div id="map" className="full-height-map">
-        <MapContainer
-          center={[38, 139.69222]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
+        <MapContainer center={markerPosition} zoom={13} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -19,11 +40,18 @@ const Places = () => {
 
           {/* openweatherapi - geolocation api lat/long */}
 
-          <Marker position={[38, 139.69222]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          <Marker
+            draggable={true}
+            icon={myIcon}
+            onChange={(e) => {
+              console.log(e);
+            }}
+            eventHandlers={eventHandlers}
+            onDragEnd={(e) => {
+              console.log("val", e);
+            }}
+            position={markerPosition}
+          ></Marker>
         </MapContainer>
       </div>
     </Layout>
