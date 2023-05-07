@@ -12,13 +12,13 @@ import CategoryEvents from "./pages/CategoryEvents";
 import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { BASE_URL } from "./constant";
+import { BASE_URL, BE_URL } from "./constant";
 
 function App() {
   const dispatch = useDispatch();
 
   const getProfile = async () => {
-    const res = await axios.get(`${BASE_URL}/users/profile`, {
+    const res = await axios.get(`${BE_URL}/users/profile`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
