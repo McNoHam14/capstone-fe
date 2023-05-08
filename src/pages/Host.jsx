@@ -8,12 +8,36 @@ import Places from "./Places";
 import moment from "moment";
 import axios from "axios";
 
+function MapModal({ show, markerPosition, setShow, setMarkerPosition }) {
+  return (
+    <Modal show={show}>
+      <Modal.Dialog>
+        <Places
+          markerPosition={markerPosition}
+          setMarkerPosition={setMarkerPosition}
+        />
+
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal.Dialog>
+    </Modal>
+  );
+}
 const Host = () => {
   const handleSubmit = (values) => {
     const location = {
       type: "Point",
       coordinates: markerPosition,
     };
+
     let data = {
       category: values?.categoryValue?.value,
       eventType: values?.eventType?.value,
@@ -21,7 +45,15 @@ const Host = () => {
       time: values?.time?.value,
       location,
       price: values?.price?.value,
+      booked: 0,
     };
+
+    let findLimit = EVENTS.find((val) => val.name === data.category)
+      ?.event.find((val) => val.type === data?.eventType)
+      ?.subEvent.find((values) => values?.name === data.eventSubType);
+
+    console.log("data", findLimit?.limit);
+    data["limit"] = findLimit?.limit;
     postRequest(data);
   };
 
@@ -48,30 +80,6 @@ const Host = () => {
   const [markerPosition, setMarkerPosition] = useState([
     51.51609005367574, -3.2451497115573744,
   ]);
-
-  function MapModal() {
-    return (
-      <Modal show={show}>
-        <Modal.Dialog>
-          <Places
-            markerPosition={markerPosition}
-            setMarkerPosition={setMarkerPosition}
-          />
-
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal.Dialog>
-      </Modal>
-    );
-  }
 
   return (
     <Layout>
@@ -167,8 +175,8 @@ const Host = () => {
                 ?.event.find((val) => val.type == eventType)
                 ?.subEvent.map((values, index) => {
                   return (
-                    <option value={values} key={index}>
-                      {values}
+                    <option value={values.name} key={index}>
+                      {values.name}
                     </option>
                   );
                 })}
@@ -205,7 +213,14 @@ const Host = () => {
           </form>
         </div>
       </div>
-      <MapModal show={show} />
+      {show && (
+        <MapModal
+          show={show}
+          markerPosition={markerPosition}
+          setShow={setShow}
+          setMarkerPosition={setMarkerPosition}
+        />
+      )}
     </Layout>
   );
 };

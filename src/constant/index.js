@@ -5,9 +5,28 @@ export const EVENTS = [
   {
     name: "SPORTS",
     event: [
-      { type: "Football", subEvent: ["5a side", "11a side", "Kickabout"] },
-      { type: "Cricket", subEvent: ["20/20", "50 overs"] },
-      { type: "Tennis", subEvent: ["Singles", "Doubles"] },
+      {
+        type: "Football",
+        subEvent: [
+          { name: "5a side", limit: 10 },
+          { name: "11a side", limit: 22 },
+          { name: "Kickabout", limit: null },
+        ],
+      },
+      {
+        type: "Cricket",
+        subEvent: [
+          { name: "20/20", limit: 22 },
+          { name: "50 overs", limit: 22 },
+        ],
+      },
+      {
+        type: "Tennis",
+        subEvent: [
+          { name: "Singles", limit: 2 },
+          { name: "Doubles", limit: 4 },
+        ],
+      },
     ],
   },
   {
@@ -15,38 +34,65 @@ export const EVENTS = [
     event: [
       {
         type: "Newborn",
-        subEvent: ["Parent & Baby Class", "Storytime"],
+        subEvent: [
+          { name: "Parent & Baby Class", limit: 14 },
+          { name: "Storytime", limit: 25 },
+        ],
       },
       {
         type: "Baby",
-        subEvent: ["Parent & Baby Class", "Singalong", "Softplay", "Storytime"],
+        subEvent: [
+          { name: "Parent & Baby Class", limit: 14 },
+          { name: "Storytime", limit: 25 },
+          { name: "Singalong", limit: 12 },
+          { name: "Softplay", limit: 30 },
+        ],
       },
       {
         type: "Toddler",
         subEvent: [
-          "Parent & Baby Class",
-          "Singalong",
-          "Softplay",
-          "Storytime",
-          "Swimming",
+          { name: "Parent & Baby Class", limit: 14 },
+          { name: "Storytime", limit: 25 },
+          { name: "Singalong", limit: 12 },
+          { name: "Softplay", limit: 30 },
+          { name: "Swimming", limit: 8 },
         ],
       },
     ],
   },
-
   {
     name: "CULTURE",
     event: [
-      { type: "Play", subEvent: ["Drama", "Comedy"] },
-      { type: "Live Music", subEvent: ["Band", "Singer"] },
+      {
+        type: "Play",
+        subEvent: [
+          { name: "Drama", limit: 45 },
+          { name: "Comedy", limit: 30 },
+        ],
+      },
+      {
+        type: "Live Music",
+        subEvent: [
+          { name: "Singer", limit: 120 },
+          { name: "Band", limit: 100 },
+        ],
+      },
     ],
   },
-
   {
     name: "FOOD/DRINK",
     event: [
-      { type: "Pizza", subEvent: ["New menu"] },
-      { type: "French", subEvent: ["Wine tasting", "5 course meal"] },
+      {
+        type: "Pizza",
+        subEvent: [{ name: "New Menu", limit: 60 }],
+      },
+      {
+        type: "French",
+        subEvent: [
+          { name: "Wine Tasting", limit: 35 },
+          { name: "5 course meal", limit: 25 },
+        ],
+      },
     ],
   },
 ];

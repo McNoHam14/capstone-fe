@@ -12,7 +12,10 @@ const myIcon = L.icon({
   popupAnchor: [0, -38],
 });
 
-const Places = ({ markerPosition, setMarkerPosition }) => {
+const Places = ({
+  markerPosition = [51.51609005367574, -3.2451497115573744],
+  setMarkerPosition,
+}) => {
   const handleDragEnd = (e) => {
     // console.log(e.target.getLatLng().lat);
     // console.log(e.target.getLatLng().lng);
