@@ -31,10 +31,12 @@ const NoticeBoard = ({ events }) => {
                 <Card>
                   <Container>
                     <Row>
-                      <Col>1</Col>
                       <Col>{values.category}</Col>
                       <Col>{values?.eventType}</Col>
                       <Col>{values?.eventSubType}</Col>
+                      <Col>
+                        {values?.participants.length}/{values?.limit}
+                      </Col>
                     </Row>
                   </Container>
                 </Card>

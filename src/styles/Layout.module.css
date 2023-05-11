@@ -1,6 +1,22 @@
 .navbar {
   background-color: rgb(55, 182, 255);
-  height: 80px;
+  height: 96px;
+  padding-top: 6px;
+  padding-left: 40px;
+}
+
+.navbar_font {
+  color: blue;
+  font-size: 22px;
+}
+
+.navbar_font:hover {
+  color: blue;
+}
+
+.navbar_font_settings {
+  color: blue;
+  font-size: 18px;
 }
 
 .container {
@@ -8,12 +24,45 @@
 }
 
 .sidebar {
-  width: 130px;
-  background-color: orange;
+  width: 240px;
+  background: rgb(255, 214, 88);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 214, 88, 1) 20%,
+    rgba(255, 203, 87, 1) 30%,
+    rgba(255, 192, 85, 1) 40%,
+    rgba(255, 199, 86, 1) 50%,
+    rgba(255, 205, 87, 1) 60%,
+    rgba(255, 186, 84, 1) 71%,
+    rgba(255, 170, 81, 1) 80%,
+    rgba(255, 159, 79, 1) 90%,
+    rgba(255, 145, 77, 1) 100%
+  );
   height: 100vh;
+}
+
+.btn_wrapper {
+  width: 90% !important;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+  border-radius: 25px;
+  background-color: #004aad;
+  color: white;
 }
 
 /* .sidebar button:hover {
   background-color: red;
   border-color: red;
 } */
+
+.image_logo {
+  width: 50px;
+  height: 75px;
+  margin-top: 20px;
+  z-index: 999;
+}
+
+.navbar_section_container {
+  position: relative;
+  margin-right: 35px;
+}

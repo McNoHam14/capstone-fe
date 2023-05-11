@@ -1,0 +1,16 @@
+{
+  "name": "FOOD/DRINK",
+  "event": [
+    {
+      "type": "Pizza",
+      "subEvent": [{ "name": "New Menu", "limit": 60 }]
+    },
+    {
+      "type": "French",
+      "subEvent": [
+        { "name": "Wine Tasting", "limit": 35 },
+        { "name": "5 course meal", "limit": 25 }
+      ]
+    }
+  ]
+}

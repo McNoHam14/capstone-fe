@@ -127,7 +127,7 @@ const Host = () => {
             <label>Pick A EventType</label>
             <span> </span>
             <select
-              id="host-eventype-dropdown"
+              id="host-eventtype-dropdown"
               name="eventType"
               value={eventType}
               onChange={(e) => {
@@ -142,7 +142,7 @@ const Host = () => {
               {EVENTS.find((val) => val.name == categoryValue)?.event.map(
                 (values, index) => {
                   return (
-                    <option value={values.type} key={index}>
+                    <option value={values.eventType} key={index}>
                       {values.type}
                     </option>
                   );

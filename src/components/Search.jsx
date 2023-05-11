@@ -97,7 +97,7 @@ const Search = ({ isNotice = false }) => {
             onChange={(e) => {
               console.log(e);
               setEventType(e.target.value);
-              console.log(eventType);
+              console.log("eventType, eventType");
               setEventSubType("");
             }}
           >
@@ -107,7 +107,7 @@ const Search = ({ isNotice = false }) => {
             {EVENTS.find((val) => val.name == category)?.event.map(
               (values, index) => {
                 return (
-                  <option value={values.type.to} key={index}>
+                  <option value={values.name} key={index}>
                     {values.type}
                   </option>
                 );
@@ -131,8 +131,8 @@ const Search = ({ isNotice = false }) => {
               ?.event.find((val) => val.type == eventType)
               ?.subEvent.map((values, index) => {
                 return (
-                  <option value={values} key={index}>
-                    {values}
+                  <option value={values.name} key={index}>
+                    {values.name}
                   </option>
                 );
               })}

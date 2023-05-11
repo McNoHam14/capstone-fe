@@ -13,6 +13,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { BASE_URL, BE_URL } from "./constant";
+import Admin from "./pages/Admin";
+import Home from "./pages/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/feed" element={<Feed />} />
@@ -49,6 +51,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/:category" element={<CategoryEvents />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

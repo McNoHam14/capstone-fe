@@ -29,7 +29,7 @@ const Events = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("HOSTED:", response.data);
         setEvents(response.data);
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ const Events = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("BOOKED:", response.data);
         setParticipant(response.data);
       })
       .catch((error) => {
@@ -66,13 +66,23 @@ const Events = () => {
                   <Card>
                     <Container>
                       <Row>
-                        <Col>1</Col>
                         <Col>{values.category}</Col>
+                        <hr></hr>
                         <Col>{values?.eventType}</Col>
+                        <hr></hr>
                         <Col>{values?.eventSubType}</Col>
+                        <hr></hr>
+                        <Col>LOCATION : {values?.location.coordinates}</Col>
+                        <hr></hr>
+                        <Col>£{values?.price}</Col>
+                        <hr></hr>
+                        <Col>
+                          PEOPLE : {values.participants.length}/{values.limit}
+                        </Col>
                       </Row>
                     </Container>
                   </Card>
+                  <hr></hr>
                 </Col>
                 <Col>{}</Col>
               </Row>
@@ -92,15 +102,22 @@ const Events = () => {
                     <Container>
                       <Row>
                         <Col>{values.category}</Col>
+                        <hr></hr>
                         <Col>{values?.eventType}</Col>
+                        <hr></hr>
                         <Col>{values?.eventSubType}</Col>
+                        <hr></hr>
+                        <Col>£{values?.price}</Col>
+                        <hr></hr>
+                        <Col>LOCATION : {values?.location.coordinates}</Col>
+                        <hr></hr>
                         <Col>
-                          {values.participants.length}/
-                          {/* {events.length.limit} */}
+                          PEOPLE : {values.participants.length}/{values.limit}
                         </Col>
                       </Row>
                     </Container>
                   </Card>
+                  <hr></hr>
                 </Col>
                 <Col>{}</Col>
               </Row>
