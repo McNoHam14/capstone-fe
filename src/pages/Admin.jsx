@@ -106,6 +106,10 @@ const Admin = () => {
               onChange={(e) => setSubEventTypeInput(e.target.value)}
               placeholder="Enter text here"
             ></input>
+            <hr></hr>
+            <label>Limit</label>
+            <span> </span>
+
             <input
               value={limit}
               type="number"
