@@ -1,5 +1,5 @@
-export const BASE_URL = "http://localhost:3000";
-export const BE_URL = "http://localhost:4000";
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
+export const BE_URL = process.env.REACT_APP_BE_URL;
 
 export const EVENTS = [
   {
