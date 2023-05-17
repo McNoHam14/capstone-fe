@@ -5,16 +5,20 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Places from "../pages/Places";
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 const Search = ({ isNotice = false }) => {
   const [events, setEvents] = useState([]);
+
+  const [params] = useSearchParams();
+
+  const user = useSelector((state) => state.userReducer.user);
 
   const handleSubmit = (values) => {
     axios
       .get(`${BE_URL}/events/search`, { params: values })
       .then((response) => {
-        console.log(response.data);
-
         setEvents(response.data);
       })
       .catch((error) => {
@@ -30,6 +34,19 @@ const Search = ({ isNotice = false }) => {
 
   const [show, setShow] = useState(false);
 
+  const [markerPosition, setMarkerPosition] = useState(null);
+
+  const getNearbyEvents = async () => {
+    const res = await axios.get(
+      `${BE_URL}/events/nearby?lng=${markerPosition[0]}&lat=${markerPosition[1]}`
+    );
+    setEvents(res.data);
+  };
+
+  useEffect(() => {
+    if (markerPosition?.length == 2) getNearbyEvents();
+  }, [markerPosition]);
+
   useEffect(() => {
     let data = { category, eventType, eventSubType };
     if (eventType && eventSubType) {
@@ -38,9 +55,41 @@ const Search = ({ isNotice = false }) => {
     } else if (eventType) {
       delete data.category;
     }
-    console.log("Send=", data);
-    handleSubmit(data);
+    if (category || eventType || eventSubType) {
+      handleSubmit(data);
+    }
   }, [category, eventType, eventSubType]);
+
+  const getEvents = async () => {
+    const category = params.get("category");
+    const res = await axios.get(`${BE_URL}/events/search`, {
+      params: { category: category || "", eventType: "", eventSubType: "" },
+    });
+
+    let filteredEvents = res.data;
+    if (!category) {
+      filteredEvents = res.data.filter((event) => {
+        const eventExist = user?.preferences?.find((preference) => {
+          if (
+            preference.categoryName == event.category &&
+            preference.eventName == event.eventType &&
+            preference.name == event.eventSubType
+          ) {
+            return true;
+          }
+        });
+        if (eventExist) {
+          return true;
+        }
+      });
+    }
+
+    setEvents(filteredEvents);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, [user, params]);
 
   return (
     <div>
@@ -53,7 +102,6 @@ const Search = ({ isNotice = false }) => {
             id="search-dropdown"
             name="search-dropdown-name"
             onChange={(e) => {
-              console.log(e.target.value);
               setCategoryValue(e.target.value);
               setEventType("");
               setEventSubType("");
@@ -95,9 +143,8 @@ const Search = ({ isNotice = false }) => {
             name="search-category-dropdown-name"
             value={eventType}
             onChange={(e) => {
-              console.log(e);
               setEventType(e.target.value);
-              console.log("eventType, eventType");
+
               setEventSubType("");
             }}
           >
@@ -120,7 +167,6 @@ const Search = ({ isNotice = false }) => {
             name="host-category-dropdown"
             value={eventSubType}
             onChange={(e) => {
-              console.log(e);
               setEventSubType(e.target.value);
             }}
           >
@@ -166,7 +212,6 @@ const Search = ({ isNotice = false }) => {
           ></input>
           <div
             onClick={() => {
-              console.log("");
               setShow(true);
             }}
           >
@@ -176,20 +221,31 @@ const Search = ({ isNotice = false }) => {
         </div>
       </form>
       <hr></hr>
-      <MapModal show={show} />
+      <MapModal
+        show={show}
+        setMarkerPosition={setMarkerPosition}
+        setShow={setShow}
+      />
       {isNotice && <NoticeBoard events={events} />}
     </div>
   );
 };
 
-function MapModal({ show }) {
+function MapModal({ show, setMarkerPosition, setShow }) {
   return (
     <Modal show={show}>
       <Modal.Dialog>
-        <Places />
+        <Places setMarkerPosition={setMarkerPosition} />
 
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
+          <Button
+            onClick={() => {
+              setShow(false);
+            }}
+            variant="secondary"
+          >
+            Close
+          </Button>
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>

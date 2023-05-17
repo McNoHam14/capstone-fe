@@ -20,7 +20,7 @@ const Places = ({
     // console.log(e.target.getLatLng().lat);
     // console.log(e.target.getLatLng().lng);
 
-    setMarkerPosition([e.target.getLatLng().lat, e.target.getLatLng().lng]);
+    setMarkerPosition([e.target.getLatLng().lng, e.target.getLatLng().lat]);
   };
 
   console.log("markerPosition", markerPosition);

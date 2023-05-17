@@ -9,9 +9,12 @@ import { useDispatch } from "react-redux";
 import logo from "../assets/img/catch-A.jpg";
 import cloud from "../assets/img/cloud-img.png";
 import cloud_logo from "../assets/img/cloud-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Layout = ({ children, isDisplay = true }) => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const signOutHandler = async () => {
     localStorage.removeItem("token");
@@ -20,6 +23,7 @@ const Layout = ({ children, isDisplay = true }) => {
       payload: null,
     });
   };
+
   if (isDisplay)
     return (
       <div>
@@ -61,7 +65,7 @@ const Layout = ({ children, isDisplay = true }) => {
                       left: 8,
                     }}
                   >
-                    <Nav.Link className={classes.navbar_font} href="#profile">
+                    <Nav.Link className={classes.navbar_font} href="/profile">
                       Profile
                     </Nav.Link>
                   </div>
@@ -186,22 +190,38 @@ const Layout = ({ children, isDisplay = true }) => {
             <hr></hr>
 
             <div>
-              <Button className={classes.btn_wrapper} variant="primary">
+              <Button
+                onClick={() => navigate("/feed?category=SPORTS")}
+                className={classes.btn_wrapper}
+                variant="primary"
+              >
                 SPORTS
               </Button>
             </div>
             <div>
-              <Button className={classes.btn_wrapper} variant="primary">
+              <Button
+                onClick={() => navigate("/feed?category=FAMILY")}
+                className={classes.btn_wrapper}
+                variant="primary"
+              >
                 FAMILY
               </Button>
             </div>
             <div>
-              <Button className={classes.btn_wrapper} variant="primary">
+              <Button
+                onClick={() => navigate("/feed?category=CULTURE")}
+                className={classes.btn_wrapper}
+                variant="primary"
+              >
                 CULTURE
               </Button>
             </div>
             <div>
-              <Button className={classes.btn_wrapper} variant="primary">
+              <Button
+                onClick={() => navigate("/feed?category=FOOD/DRINK")}
+                className={classes.btn_wrapper}
+                variant="primary"
+              >
                 FOOD/DRINK
               </Button>
             </div>

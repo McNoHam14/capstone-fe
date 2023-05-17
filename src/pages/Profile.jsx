@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { EVENTS } from "../constant";
-import { Container } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
 
 const Profile = () => {
@@ -50,20 +50,51 @@ const Profile = () => {
     });
   };
 
+  const changeImage = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    const res = await axios.post(
+      "http://localhost:4000/users/profile-image",
+      formData,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+    console.log(res.data);
+    dispatch({
+      type: "STORE_USER",
+      payload: res.data,
+    });
+  };
+
   return (
     <Layout>
       <div>
         <Container>
-          {/* PROFILE PICTURE (CLOUDINARY) */}
+          <Row>
+            <Col>
+              <Card>
+                {/* PROFILE PICTURE (CLOUDINARY) */}
+                <img src={user?.image} alt="profile" />
 
-          {/* FIRST NAME */}
-          <p>{user?.firstName}</p>
+                <input type="file" hidden id="image" onChange={changeImage} />
 
-          {/* LAST NAME */}
-          <p>{user?.lastName}</p>
+                <label htmlFor="image">CHANGE IMAGE</label>
 
-          {/* AGE */}
-          <p>{moment().diff(user?.birthDate, "years")}</p>
+                {/* FIRST NAME */}
+                <p>{user?.firstName}</p>
+
+                {/* LAST NAME */}
+                <p>{user?.lastName}</p>
+
+                {/* AGE */}
+                <p>{moment().diff(user?.birthDate, "years")}</p>
+              </Card>
+            </Col>
+          </Row>
 
           {/* INTERESTS - CATEGORY - EVENT
         TYPE - SUB EVENT TYPE */}
