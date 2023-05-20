@@ -9,7 +9,7 @@ import Places from "./pages/Places";
 import Profile from "./pages/Profile";
 import Events from "./pages/Events";
 import CategoryEvents from "./pages/CategoryEvents";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { BASE_URL, BE_URL } from "./constant";
@@ -19,25 +19,35 @@ import Home from "./pages/Home";
 function App() {
   const dispatch = useDispatch();
 
+  const [profileLoading, setProfileLoading] = useState(true);
+
   const getProfile = async () => {
-    const res = await axios.get(`${BE_URL}/users/profile`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
-    // console.log(res.data);
-    dispatch({
-      type: "STORE_USER",
-      payload: res.data,
-    });
+    try {
+      const res = await axios.get(`${BE_URL}/users/profile`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      // console.log(res.data);
+      dispatch({
+        type: "STORE_USER",
+        payload: res.data,
+      });
+    } catch (error) {}
+    setProfileLoading(false);
   };
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getProfile();
+    } else {
+      setProfileLoading(false);
     }
   }, []);
 
+  if (profileLoading) {
+    return <div>LOADING...</div>;
+  }
   return (
     <>
       <Routes>

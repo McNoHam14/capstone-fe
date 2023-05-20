@@ -160,99 +160,101 @@ const Layout = ({ children, isDisplay = true }) => {
 
         <div className={classes.container}>
           <div className={classes.sidebar}>
-            <div
-            // style={{ width: "280px", marginTop: 10, marginLeft: 10 }}
-            // className="btn-wrapper mb-2 ml-2 mr-2"
-            >
-              <Button
-                className={classes.btn_wrapper}
-                // style={{ width: "180px", marginTop: 4, marginLeft: 4 }}
-                variant="danger"
+            <div className={classes.sidebar_content}>
+              <div
+              // style={{ width: "280px", marginTop: 10, marginLeft: 10 }}
+              // className="btn-wrapper mb-2 ml-2 mr-2"
               >
-                HOST/USER
-              </Button>
-            </div>
-            <div>
-              <Button className={classes.btn_wrapper} variant="primary">
-                FEED
-              </Button>
-            </div>
-            <div>
-              <Button className={classes.btn_wrapper} variant="primary">
-                SEARCH
-              </Button>
-            </div>
-            <div>
-              <Button className={classes.btn_wrapper} variant="primary">
-                N BOARD
-              </Button>
-            </div>
-            <hr></hr>
+                <Button
+                  className={classes.btn_wrapper}
+                  // style={{ width: "180px", marginTop: 4, marginLeft: 4 }}
+                  variant="danger"
+                >
+                  HOST/USER
+                </Button>
+              </div>
+              <div>
+                <Button className={classes.btn_wrapper} variant="primary">
+                  FEED
+                </Button>
+              </div>
+              <div>
+                <Button className={classes.btn_wrapper} variant="primary">
+                  SEARCH
+                </Button>
+              </div>
+              <div>
+                <Button className={classes.btn_wrapper} variant="primary">
+                  N BOARD
+                </Button>
+              </div>
+              <hr></hr>
 
-            <div>
-              <Button
-                onClick={() => navigate("/feed?category=SPORTS")}
-                className={classes.btn_wrapper}
-                variant="primary"
-              >
-                SPORTS
-              </Button>
-            </div>
-            <div>
-              <Button
-                onClick={() => navigate("/feed?category=FAMILY")}
-                className={classes.btn_wrapper}
-                variant="primary"
-              >
-                FAMILY
-              </Button>
-            </div>
-            <div>
-              <Button
-                onClick={() => navigate("/feed?category=CULTURE")}
-                className={classes.btn_wrapper}
-                variant="primary"
-              >
-                CULTURE
-              </Button>
-            </div>
-            <div>
-              <Button
-                onClick={() => navigate("/feed?category=FOOD/DRINK")}
-                className={classes.btn_wrapper}
-                variant="primary"
-              >
-                FOOD/DRINK
-              </Button>
-            </div>
-            <hr></hr>
+              <div>
+                <Button
+                  onClick={() => navigate("/feed?category=SPORTS")}
+                  className={classes.btn_wrapper}
+                  variant="primary"
+                >
+                  SPORTS
+                </Button>
+              </div>
+              <div>
+                <Button
+                  onClick={() => navigate("/feed?category=FAMILY")}
+                  className={classes.btn_wrapper}
+                  variant="primary"
+                >
+                  FAMILY
+                </Button>
+              </div>
+              <div>
+                <Button
+                  onClick={() => navigate("/feed?category=CULTURE")}
+                  className={classes.btn_wrapper}
+                  variant="primary"
+                >
+                  CULTURE
+                </Button>
+              </div>
+              <div>
+                <Button
+                  onClick={() => navigate("/feed?category=FOOD/DRINK")}
+                  className={classes.btn_wrapper}
+                  variant="primary"
+                >
+                  FOOD/DRINK
+                </Button>
+              </div>
+              <hr></hr>
 
-            <div>
-              <Button
-                className={classes.btn_wrapper}
-                onClick={signOutHandler}
-                variant="success"
-              >
-                LOG OUT
-              </Button>
-            </div>
-            <hr></hr>
+              <div>
+                <Button
+                  className={classes.btn_wrapper}
+                  onClick={signOutHandler}
+                  variant="success"
+                >
+                  LOG OUT
+                </Button>
+              </div>
+              <hr></hr>
 
-            <div>
-              <Button className={classes.btn_wrapper} variant="success">
-                ADMIN
-              </Button>
+              <div>
+                <Button className={classes.btn_wrapper} variant="success">
+                  ADMIN
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div>
+          <div className={classes.content}>
             {/* page */}
             {children}
           </div>
         </div>
       </div>
     );
-  else return <div>{children}</div>;
+  else return <div className={classes.content}>{children}</div>;
 };
 
 export default Layout;

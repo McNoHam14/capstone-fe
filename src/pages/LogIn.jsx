@@ -7,11 +7,14 @@ import { MDBBadge, MDBBtn, MDBIcon } from "mdb-react-ui-kit";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import logo from "../assets/img/catch-A.jpg";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const logInHandler = async (e) => {
     e.preventDefault();
@@ -25,6 +28,7 @@ const LogIn = () => {
         type: "STORE_USER",
         payload: res.data.user,
       });
+      navigate("/profile");
     } catch (error) {
       alert(error.response.data);
     }
@@ -78,7 +82,7 @@ const LogIn = () => {
               </Form>
               <div>
                 <p className="d-flex align-items-center justify-content-center text-center">
-                  or Sign In using...
+                  or Sign In/Up using...
                 </p>
                 <div className="d-flex align-items-center justify-content-center text-center mb-4">
                   <span>

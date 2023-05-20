@@ -5,12 +5,21 @@ import moment from "moment";
 import { EVENTS } from "../constant";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const user = useSelector((state) => state.userReducer.user);
 
   const [preferences, setPreferences] = useState([]);
   console.log(preferences);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   // const categories = [];
   // EVENTS.forEach((EVENT) => {
