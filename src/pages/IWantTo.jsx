@@ -3,44 +3,120 @@ import "../styles/IWantTo.module.css";
 import Button from "react-bootstrap/Button";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import classes from "../styles/IWantTo.module.css";
-
-const IWantTo = () => {
+import Hand from "../assets/img/hand2.png"
+const IWantTo = () =>
+{
   return (
     <div className={classes.iwantto_background}>
-      <div className="d-grid gap-2">
-        <Button variant="primary" size="lg">
+
+      <div className="d-flex align-items-center justify-content-center text-center mb-4" >
+        <Button variant="primary" type="submit" style={{ borderRadius: 40, width: "100%", backgroundColor: "#124a9e", margin: 20, fontWeight: "bold", padding: 20, fontSize: 30 }}>
           I WANT TO...
         </Button>
       </div>
 
+
       <Container>
-        <Row>
-          <Col>
-            1 of 2
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>HOST</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
+        <Row >
+          <Col style={{display:"flex",justifyContent:"center"}} md={6}>
+            <Card style={{ width: "50%", background: "#37B5FF", border: "none" }}>
+              <div className="d-flex  justify-content-center text-center" >
+                <Button variant="primary" type="submit" style={{ borderRadius: 40, width: "100%", backgroundColor: "#124a9e", margin: 20, marginBottom: 0, fontWeight: "bold", padding: 5, fontSize: 20 }}>
+                  HOST
+                </Button>
+              </div>
+              <hr style={{ color: "black" }}></hr>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  SPORTS
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  FOOD & DRINKS
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  FAMILY
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  CULTURE
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
             </Card>
           </Col>
-          <Col>
-            2 of 2
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>USER</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
+
+          <Col md={6} style={{display:"flex",justifyContent:"center"}}>
+            <Card style={{ width: "50%", background: "#5DE1E6", border: "none" }}>
+              <div className="d-flex  justify-content-center text-center" >
+                <Button variant="primary" type="submit" style={{ borderRadius: 40, width: "100%", backgroundColor: "#124a9e", margin: 20, marginBottom: 0, fontWeight: "bold", padding: 5, fontSize: 20 }}>
+                  USER
+                </Button>
+              </div>
+              <hr style={{ color: "black" }}></hr>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  SPORTS
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  FOOD & DRINKS
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  FAMILY
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
+
+              <Row style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 10, cursor: "pointer" }} >
+                <Col md={8} style={{ fontSize: 20 }}>
+                  CULTURE
+                </Col>
+                <Col md={4} >
+                  <img src={Hand} width={50}></img>
+                </Col>
+
+              </Row>
             </Card>
           </Col>
         </Row>

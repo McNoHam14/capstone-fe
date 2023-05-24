@@ -49,7 +49,7 @@ const Layout = ({ children, isDisplay = true }) => {
                       left: 8,
                     }}
                   >
-                    <Navbar.Brand href="#home"></Navbar.Brand>
+                    <Navbar.Brand href="/"></Navbar.Brand>
                   </div>
                 </div>
 
@@ -62,7 +62,7 @@ const Layout = ({ children, isDisplay = true }) => {
                       position: "absolute",
                       zIndex: 100,
                       top: 10,
-                      left: 8,
+                      left: 11,
                     }}
                   >
                     <Nav.Link className={classes.navbar_font} href="/profile">
@@ -80,10 +80,10 @@ const Layout = ({ children, isDisplay = true }) => {
                       position: "absolute",
                       zIndex: 100,
                       top: 10,
-                      left: 8,
+                      left: 11,
                     }}
                   >
-                    <Nav.Link className={classes.navbar_font} href="#events">
+                    <Nav.Link className={classes.navbar_font} href="/events">
                       Events
                     </Nav.Link>
                   </div>
@@ -98,16 +98,16 @@ const Layout = ({ children, isDisplay = true }) => {
                       position: "absolute",
                       zIndex: 100,
                       top: 10,
-                      left: 8,
+                      left: 11,
                     }}
                   >
-                    <Nav.Link className={classes.navbar_font} href="#places">
+                    <Nav.Link className={classes.navbar_font} href="/places">
                       Places
                     </Nav.Link>
                   </div>
                 </div>
 
-                <div className={classes.navbar_section_container}>
+                {/* <div className={classes.navbar_section_container}>
                   <div>
                     <img style={{ width: "100px" }} src={cloud} alt="cloud" />
                   </div>
@@ -121,9 +121,9 @@ const Layout = ({ children, isDisplay = true }) => {
                   >
                     <Nav.Link className={classes.navbar_font} href="#friends">
                       Friends
-                    </Nav.Link>
+                    </Nav.Link> 
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 style={{
@@ -141,7 +141,7 @@ const Layout = ({ children, isDisplay = true }) => {
                       position: "absolute",
                       zIndex: 100,
                       top: 12,
-                      left: 6,
+                      left: 10,
                       // right: 3,
                     }}
                   >
@@ -166,27 +166,32 @@ const Layout = ({ children, isDisplay = true }) => {
               // className="btn-wrapper mb-2 ml-2 mr-2"
               >
                 <Button
+                  onClick={() => navigate("/host")}
                   className={classes.btn_wrapper}
                   // style={{ width: "180px", marginTop: 4, marginLeft: 4 }}
-                  variant="danger"
+                  variant="primary"
                 >
-                  HOST/USER
+                  HOST
                 </Button>
               </div>
               <div>
-                <Button className={classes.btn_wrapper} variant="primary">
+                <Button
+                  onClick={() => navigate("/feed")}
+                  className={classes.btn_wrapper}
+                  variant="primary"
+                >
                   FEED
                 </Button>
               </div>
               <div>
-                <Button className={classes.btn_wrapper} variant="primary">
+                {/* <Button className={classes.btn_wrapper} variant="primary">
                   SEARCH
-                </Button>
+                </Button> */}
               </div>
               <div>
-                <Button className={classes.btn_wrapper} variant="primary">
+                {/* <Button className={classes.btn_wrapper} variant="primary">
                   N BOARD
-                </Button>
+                </Button> */}
               </div>
               <hr></hr>
 
@@ -230,8 +235,8 @@ const Layout = ({ children, isDisplay = true }) => {
 
               <div>
                 <Button
-                  className={classes.btn_wrapper}
                   onClick={signOutHandler}
+                  className={classes.btn_wrapper}
                   variant="success"
                 >
                   LOG OUT
@@ -240,7 +245,11 @@ const Layout = ({ children, isDisplay = true }) => {
               <hr></hr>
 
               <div>
-                <Button className={classes.btn_wrapper} variant="success">
+                <Button
+                  onClick={() => navigate("/admin")}
+                  className={classes.btn_wrapper}
+                  variant="success"
+                >
                   ADMIN
                 </Button>
               </div>
@@ -254,7 +263,7 @@ const Layout = ({ children, isDisplay = true }) => {
         </div>
       </div>
     );
-  else return <div className={classes.content}>{children}</div>;
+  else return <div>{children}</div>;
 };
 
 export default Layout;

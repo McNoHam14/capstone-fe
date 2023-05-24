@@ -10,16 +10,16 @@
 }
 
 .navbar_font {
-  color: blue;
+  color: #004aad;
   font-size: 22px;
 }
 
 .navbar_font:hover {
-  color: blue;
+  color: #004aad;
 }
 
 .navbar_font_settings {
-  color: blue;
+  color: #004aad;
   font-size: 18px;
 }
 

@@ -15,14 +15,19 @@ import { useDispatch } from "react-redux";
 import { BASE_URL, BE_URL } from "./constant";
 import Admin from "./pages/Admin";
 import Home from "./pages/Home";
+import Layout from "./components/Layout";
+import { Spinner } from "react-bootstrap";
 
-function App() {
+function App()
+{
   const dispatch = useDispatch();
 
   const [profileLoading, setProfileLoading] = useState(true);
 
-  const getProfile = async () => {
-    try {
+  const getProfile = async () =>
+  {
+    try
+    {
       const res = await axios.get(`${BE_URL}/users/profile`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -33,20 +38,24 @@ function App() {
         type: "STORE_USER",
         payload: res.data,
       });
-    } catch (error) {}
+    } catch (error) { }
     setProfileLoading(false);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
+  useEffect(() =>
+  {
+    if (localStorage.getItem("token"))
+    {
       getProfile();
-    } else {
+    } else
+    {
       setProfileLoading(false);
     }
   }, []);
 
-  if (profileLoading) {
-    return <div>LOADING...</div>;
+  if (profileLoading)
+  {
+    return <center><Spinner animation="border" variant="primary" style={{position:"absolute",top:"40%"}} /></center>
   }
   return (
     <>
@@ -57,10 +66,10 @@ function App() {
         <Route path="/feed" element={<Feed />} />
         <Route path="/host" element={<Host />} />
         <Route path="/iwantto" element={<IWantTo />} />
-        <Route path="/places" element={<Places />} />
+        <Route path="/places" element={<Layout><Places style={{ position: "relative", left: "50%", top: "10%" }} /> </Layout>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/events/:category" element={<CategoryEvents />} />
+        {/* <Route path="/events/:category" element={<CategoryEvents />} /> */}
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </>

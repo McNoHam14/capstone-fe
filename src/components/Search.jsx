@@ -97,130 +97,139 @@ const Search = ({ isNotice = false }) => {
   return (
     <div>
       <div className={classes.section_container}>
-        <div>
+        <div style={{ display: "flex" }}>
           <div>
             <div>
-              <img style={{ width: "120px" }} src={cloud} alt="cloud" />
+              <img
+                style={{ width: "240px", height: 140 }}
+                src={cloud}
+                alt="cloud"
+              />
             </div>
             <div
               style={{
                 position: "absolute",
                 zIndex: 100,
-                top: 34,
-                left: 22,
+                top: 44,
+                left: 58,
                 fontWeight: "bold",
                 textAlign: "center",
+                fontSize: 30,
+                color: "#004AAD",
               }}
             >
               Show Me
             </div>
           </div>
-          <div
-            style={{
-              marginTop: 15,
-              display: "flex",
-              justifyContent: "space-around",
-              marginBottom: 20,
-            }}
-          >
-            {/* <label>CATEGORY</label> */}
-            <select
-              className={classes.show_me_drowdown}
-              // name="sports"
-              id="search-dropdown"
-              name="search-dropdown-name"
-              onChange={(e) => {
-                setCategoryValue(e.target.value);
-                setEventType("");
-                setEventSubType("");
-              }}
-              value={category}
-            >
-              <option key={""} value={""}>
-                {"Select a category"}
-              </option>
-              {EVENTS.map((values, index) => {
-                return (
-                  <option key={index} value={values.name.toUpperCase()}>
-                    {values.name}
-                  </option>
-                );
-              })}
-            </select>
-
-            {/* <label>Choose an EventType</label> */}
-            <select
-              className={classes.show_me_drowdown}
-              id="search-category-dropdown"
-              name="search-category-dropdown-name"
-              value={eventType}
-              onChange={(e) => {
-                setEventType(e.target.value);
-                setEventSubType("");
+          <div>
+            <div
+              style={{
+                marginTop: 15,
+                display: "flex",
+                justifyContent: "space-around",
+                marginBottom: 20,
               }}
             >
-              <option key={""} value={""}>
-                {"Event Type"}
-              </option>
-              {EVENTS.find((val) => val.name == category)?.event.map(
-                (values, index) => {
+              {/* <label>CATEGORY</label> */}
+              <select
+                className={classes.show_me_drowdown}
+                // name="sports"
+                id="search-dropdown"
+                name="search-dropdown-name"
+                onChange={(e) => {
+                  setCategoryValue(e.target.value);
+                  setEventType("");
+                  setEventSubType("");
+                }}
+                value={category}
+              >
+                <option key={""} value={""}>
+                  {"Select a category"}
+                </option>
+                {EVENTS.map((values, index) => {
                   return (
-                    <option value={values.name} key={index}>
-                      {values.type}
-                    </option>
-                  );
-                }
-              )}
-            </select>
-            {/* <label>Choose an SubEventType</label> */}
-            <select
-              className={classes.show_me_drowdown}
-              id="host-category-dropdown"
-              name="host-category-dropdown"
-              value={eventSubType}
-              onChange={(e) => {
-                setEventSubType(e.target.value);
-              }}
-            >
-              <option key={""} value={""}>
-                {"Event SubType"}
-              </option>
-              {EVENTS.find((val) => val.name == category)
-                ?.event.find((val) => val.type == eventType)
-                ?.subEvent.map((values, index) => {
-                  return (
-                    <option value={values.name} key={index}>
+                    <option key={index} value={values.name.toUpperCase()}>
                       {values.name}
                     </option>
                   );
                 })}
-            </select>
-          </div>
-          <div style={{ display: "flex" }}>
-            <input
-              type="datetime-local"
-              id="meeting-time"
-              name="meeting-time"
-              value="2023-05-01T12:30"
-              min="2023-05-01T00:00"
-              max="20-06-24T00:00"
-              className={classes.show_me_drowdown}
-            ></input>
-            <div
-              style={{
-                marginLeft: 20,
-                background: "rgb(0, 74, 173)",
-                borderRadius: 40,
-                color: "white",
-                padding: 20,
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setShow(true);
-              }}
-            >
-              {" "}
-              OPEN MAP FOR LOCATION{" "}
+              </select>
+
+              {/* <label>Choose an EventType</label> */}
+              <select
+                className={classes.show_me_drowdown}
+                id="search-category-dropdown"
+                name="search-category-dropdown-name"
+                value={eventType}
+                onChange={(e) => {
+                  setEventType(e.target.value);
+                  setEventSubType("");
+                }}
+              >
+                <option key={""} value={""}>
+                  {"Event Type"}
+                </option>
+                {EVENTS.find((val) => val.name == category)?.event.map(
+                  (values, index) => {
+                    return (
+                      <option value={values.name} key={index}>
+                        {values.type}
+                      </option>
+                    );
+                  }
+                )}
+              </select>
+              {/* <label>Choose an SubEventType</label> */}
+              <select
+                className={classes.show_me_drowdown}
+                id="host-category-dropdown"
+                name="host-category-dropdown"
+                value={eventSubType}
+                onChange={(e) => {
+                  setEventSubType(e.target.value);
+                }}
+              >
+                <option key={""} value={""}>
+                  {"Event SubType"}
+                </option>
+                {EVENTS.find((val) => val.name == category)
+                  ?.event.find((val) => val.type == eventType)
+                  ?.subEvent.map((values, index) => {
+                    return (
+                      <option value={values.name} key={index}>
+                        {values.name}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
+            <div style={{ display: "flex" }}>
+              <input
+                type="datetime-local"
+                id="meeting-time"
+                name="meeting-time"
+                value="2023-05-01T12:30"
+                min="2023-05-01T00:00"
+                max="20-06-24T00:00"
+                className={classes.show_me_drowdown}
+              ></input>
+              <div
+                style={{
+                  marginLeft: 20,
+                  background: "rgb(0, 74, 173)",
+                  borderRadius: 40,
+                  color: "white",
+                  padding: "15px 10px 10px 10px",
+                  cursor: "pointer",
+                  fontSize: 12,
+                }}
+                onClick={() => {
+                  setShow(true);
+                }}
+              >
+                {" "}
+                OPEN MAP FOR LOCATION{" "}
+              </div>
             </div>
           </div>
         </div>
@@ -238,20 +247,18 @@ const Search = ({ isNotice = false }) => {
 
 function MapModal({ show, setMarkerPosition, setShow }) {
   return (
-    <Modal show={show}>
-      <Modal.Dialog>
-        <Places setMarkerPosition={setMarkerPosition} />
-
-        <Modal.Footer>
-          <Button
-            onClick={() => {
-              setShow(false);
-            }}
-            variant="secondary"
-          >
-            Close
-          </Button>
-        </Modal.Footer>
+    <Modal show={show} style={{ width: "101%" }}>
+      <Modal.Dialog style={{ padding: 0, margin: 0 }}>
+        <Places isDisplay={false} setMarkerPosition={setMarkerPosition} />
+        <Button
+          className="m-5"
+          onClick={() => {
+            setShow(false);
+          }}
+          variant="secondary"
+        >
+          Close
+        </Button>
       </Modal.Dialog>
     </Modal>
   );

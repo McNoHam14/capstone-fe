@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import moment from "moment";
 import axios from "axios";
 import { BE_URL } from "../constant";
@@ -21,27 +21,56 @@ const NoticeBoard = ({ events }) => {
 
   return (
     <>
-      <Container>
+      <Container
+        style={{ background: "#37B5FF", padding: 20, borderRadius: 10 }}
+      >
         {events
           .sort((a, b) => new Date(a.time) - new Date(b.time))
           .map((values) => (
-            <Row>
-              <Col>{moment(values.time).format("DD/MM/YYYY hh:mm")}</Col>
-              <Col>
-                <Card>
-                  <Container>
-                    <Row>
-                      <Col>{values.category}</Col>
-                      <Col>{values?.eventType}</Col>
-                      <Col>{values?.eventSubType}</Col>
-                      <Col>
-                        {values?.participants.length}/{values?.limit}
-                      </Col>
-                    </Row>
-                  </Container>
-                </Card>
+            <Row className="mt-3">
+              <Col
+                style={{ display: "flex", alignItems: "center" }}
+                className="fw-bold"
+                md={3}
+              >
+                {moment(values.time).format("DD/MM/YYYY :  hh:mm")}
               </Col>
               <Col>
+                <Card style={{ borderRadius: "10px", overflow: "hidden" }}>
+                  <Table striped bordered hover size="lg">
+                    <thead>
+                      <tr>
+                        <th>CATEGORY</th>
+                        <th>EVENT</th>
+                        <th style={{ width: 200 }} width="200px">
+                          SUB EVENT
+                        </th>
+                        <th>LIMIT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{values.category}</td>
+                        <td>{values?.eventType}</td>
+                        <td style={{ width: 200 }} width="200px">
+                          {values?.eventSubType}
+                        </td>
+                        <td>
+                          {values?.participants.length}/{values?.limit}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                </Card>
+              </Col>
+              <Col
+                md={2}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              >
                 {}
                 <Button
                   onClick={() => bookEventHandler(values._id)}

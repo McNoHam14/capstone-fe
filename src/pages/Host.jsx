@@ -7,37 +7,49 @@ import { Button, Modal } from "react-bootstrap";
 import Places from "./Places";
 import moment from "moment";
 import axios from "axios";
+import HostImage from "../assets/img/host.png";
+import Pin from "../assets/img/pin.jpeg";
 
 function MapModal({ show, markerPosition, setShow, setMarkerPosition }) {
   return (
-    <Modal show={show}>
-      <Modal.Dialog>
+    <Modal show={show} style={{ width: "101%" }}>
+      <Modal.Dialog style={{ padding: 0, margin: 0 }}>
         <Places
-          markerPosition={markerPosition}
+          isDisplay={false}
           setMarkerPosition={setMarkerPosition}
+          markerPosition={markerPosition}
         />
-
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              setShow(false);
-            }}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
+        <Button
+          className="m-5"
+          onClick={() => {
+            setShow(false);
+          }}
+          variant="secondary"
+        >
+          Close
+        </Button>
       </Modal.Dialog>
     </Modal>
   );
 }
 const Host = () => {
+  const [categoryValue, setCategoryValue] = useState("");
+
+  const [eventType, setEventType] = useState("");
+
+  const [eventSubType, setEventSubType] = useState("");
+
+  const [show, setShow] = useState(false);
+  const [markerPosition, setMarkerPosition] = useState([
+    51.51609005367574, -3.2451497115573744,
+  ]);
+
   const handleSubmit = (values) => {
     const location = {
       type: "Point",
-      coordinates: markerPosition,
+      coordinates: markerPosition.reverse(),
     };
-
+    console.log(markerPosition);
     let data = {
       category: values?.categoryValue?.value,
       eventType: values?.eventType?.value,
@@ -70,32 +82,26 @@ const Host = () => {
     }
   };
 
-  const [categoryValue, setCategoryValue] = useState("");
-
-  const [eventType, setEventType] = useState("");
-
-  const [eventSubType, setEventSubType] = useState("");
-
-  const [show, setShow] = useState(false);
-  const [markerPosition, setMarkerPosition] = useState([
-    51.51609005367574, -3.2451497115573744,
-  ]);
-
   return (
     <Layout>
-      <div className={classes.outer_host}>
+      <div
+        className={classes.outer_host}
+        style={{
+          width: window.innerWidth - 300,
+          height: window.innerHeight - 150,
+        }}
+      >
         <div className={classes.inner_host}>
-          <span>HOST (CLOUD ICON)</span>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSubmit(e.target);
             }}
           >
-            <label>Pick A Category</label>
-            <span> </span>
-            {/* {console.log("cc", categoryRef.current.value)} */}
+            <img width={140} src={HostImage} className="m-2"></img>
+
             <select
+              className={classes.show_me_drowdown}
               id="host-category-dropdown"
               // ref={categoryRef}
               name="categoryValue"
@@ -123,10 +129,9 @@ const Host = () => {
               <option>Food/Drink</option> 
               */}
             </select>
-            <hr></hr>
-            <label>Pick A EventType</label>
-            <span> </span>
+            <hr style={{ color: "white" }}></hr>
             <select
+              className={classes.show_me_drowdown}
               id="host-eventtype-dropdown"
               name="eventType"
               value={eventType}
@@ -157,9 +162,9 @@ const Host = () => {
               <option>Food/Drink - </option> */}
             </select>
             <span> </span>
-            <label>Pick A EventSubType (DYNAMIC) </label>
             <span> </span>
             <select
+              className={classes.show_me_drowdown}
               id="host-subeventtype-dropdown"
               name="eventSubType"
               onChange={(e) => {
@@ -181,35 +186,56 @@ const Host = () => {
                   );
                 })}
             </select>
-            <hr></hr>
-            <span>Time/Date</span>
-            <span> </span>
+            <hr style={{ color: "white" }}></hr>
             <input
+              className={classes.show_me_drowdown}
+              style={{ width: "96%" }}
               type="datetime-local"
               id="meeting-time"
               name="time"
               min="2023-05-01T00:00"
               max="20-06-24T00:00"
             ></input>
-            <hr></hr>
-            Location (GOOGLE MAPS ICON) <select></select>
-            <div
-              onClick={() => {
-                console.log("");
-                setShow(true);
-              }}
-            >
-              {" "}
-              OPEN MAP FOR LOCATION{" "}
+            <hr style={{ color: "white" }}></hr>
+
+            <center>
+              <div
+                style={{ color: "white", cursor: "pointer" }}
+                onClick={() => {
+                  console.log("");
+                  setShow(true);
+                }}
+              >
+                Select Location
+                <img
+                  width={30}
+                  src={Pin}
+                  style={{ borderRadius: 25, marginLeft: 12 }}
+                ></img>
+              </div>
+            </center>
+            <hr style={{ color: "white" }}></hr>
+            <input
+              style={{ width: "97%" }}
+              className={classes.show_me_drowdown}
+              placeholder="Price/Deposit (£)"
+              name="price"
+            ></input>
+            <hr style={{ color: "white" }}></hr>
+            <div className="d-flex align-items-center justify-content-center text-center mb-4">
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  borderRadius: 40,
+                  width: 150,
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+              >
+                SUBMIT
+              </Button>
             </div>
-            <hr></hr>
-            Price/Deposit
-            <span> </span>
-            <span>£</span>
-            <span> </span>
-            <input name="price"></input>
-            <hr></hr>
-            <button type="submit">SUBMIT</button>
           </form>
         </div>
       </div>

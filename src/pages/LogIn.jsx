@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import logo from "../assets/img/catch-A.jpg";
 import { useNavigate } from "react-router-dom";
+import cloud_logo from "../assets/img/cloud-logo.png";
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -19,10 +20,13 @@ const LogIn = () => {
   const logInHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/users/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://rich-cyan-wildebeest-tie.cyclic.app/users/login",
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", res.data.token);
       dispatch({
         type: "STORE_USER",
@@ -36,20 +40,33 @@ const LogIn = () => {
 
   return (
     <div className={classes.login_background}>
-      <Container>
+      <Container className={classes.login_background_container}>
         <Row>
           <Col md={3}>
-            <img className={classes.image_logo} src={logo} alt="catch-A Logo" />
+            <div className={classes.navbar_section_container}>
+              <div>
+                <img
+                  style={{ width: "300px", marginTop: 130 }}
+                  src={cloud_logo}
+                  alt="cloud"
+                />
+              </div>
+            </div>
           </Col>
           <Col md={6} className="mt-3">
-            <Card className="p-4">
-              <h2 className="d-flex align-items-center justify-content-center text-center">
+            <Card
+              className="p-4"
+              style={{
+                borderRadius: 20,
+              }}
+            >
+              <h2 className="d-flex fw-bold align-items-center justify-content-center text-center">
                 Login
               </h2>
               <Form onSubmit={logInHandler}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
                   <Form.Label className="d-flex align-items-center justify-content-center text-center">
-                    e-mail
+                    <b> EMAIL</b>
                   </Form.Label>
                   <Form.Control
                     value={email}
@@ -63,7 +80,7 @@ const LogIn = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label className="d-flex align-items-center justify-content-center text-center">
-                    Password
+                    <b> Password</b>
                   </Form.Label>
                   <Form.Control
                     value={password}
@@ -74,30 +91,46 @@ const LogIn = () => {
                     placeholder="type your password..."
                   />
                 </Form.Group>
-                <div className="d-flex align-items-center justify-content-center text-center mb-4">
-                  <Button variant="primary" type="submit">
-                    LOGON
+                <div className="d-flex align-items-center justify-content-center text-center mb-3">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    style={{
+                      borderRadius: 40,
+                      width: 185,
+                      backgroundColor: "#124a9e",
+                    }}
+                  >
+                    LOGIN
                   </Button>
                 </div>
               </Form>
               <div>
-                <p className="d-flex align-items-center justify-content-center text-center">
-                  or Sign In/Up using...
+                <p className="d-flex align-items-center justify-content-center text-center ">
+                  <b>or...</b>
                 </p>
                 <div className="d-flex align-items-center justify-content-center text-center mb-4">
-                  <span>
-                    <i class="bi bi-envelope-at-fill"></i>
+                  {/* <span style={{ marginTop: -20 }}>
+                    <i
+                      class="bi bi-envelope-at-fill mr-5"
+                      style={{ fontSize: 25, marginRight: 10 }}
+                    ></i>
                   </span>
-                  <span> / </span>
-                  <span>
-                    <i class="bi bi-google"></i>
-                  </span>
+                  <span style={{ marginTop: -20 }}>
+                    <i
+                      class="bi bi-google"
+                      style={{ fontSize: 25, marginRight: 10 }}
+                    ></i>
+                  </span> */}
 
-                  <a href="http://localhost:4000/users/auth/google">
+                  <a href="https://rich-cyan-wildebeest-tie.cyclic.app/users/auth/google">
                     <Button
-                      className="mb-4 w-100"
-                      size="lg"
-                      style={{ backgroundColor: "#124a9e" }}
+                      className="mb-2 w-100"
+                      size="md"
+                      style={{
+                        backgroundColor: "#124a9e",
+                        borderRadius: "25px",
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,11 +151,23 @@ const LogIn = () => {
       </MDBBtn>
       https://mdbootstrap.com/docs/react/extended/social-media/#! */}
                 </div>
+
+                <p className="d-flex align-items-center justify-content-center text-center">
+                  <a href="/signup">not Signed Up?</a>
+                </p>
               </div>
             </Card>
           </Col>
           <Col md={3}>
-            <img className={classes.image_logo} src={logo} alt="catch-A Logo" />
+            <div className={classes.navbar_section_container}>
+              <div>
+                <img
+                  style={{ width: "300px", marginTop: 30 }}
+                  src={cloud_logo}
+                  alt="cloud"
+                />
+              </div>
+            </div>
           </Col>
         </Row>
       </Container>
